@@ -4,6 +4,14 @@ import GameView from "./GameView.js";
 let game = new Game();
 let gameView = new GameView(document.getElementById("app"));
 
+// define functions
+gameView.onTileClick = function() {
+
+}
+
+gameView.onRestartClick = function() {
+    
+}
 
 /*------------------------------------------------------------------------------------------*/
 /*
