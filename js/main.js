@@ -15,7 +15,7 @@ gameView.onTileClick = function(i) {
 gameView.onRestartClick = function() {
     game = new Game();
     gameView.update(game);
-    console.log("Game is restarted");
+    console.log("Jogo Reiniciado");
 }
 
 //wow wtf i'm actually surprised this worked this well, damn

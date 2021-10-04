@@ -50,15 +50,15 @@ export default class GameView {
 
     // Turno de quem
     updateTurn(game) {
-        this.root.querySelector(".header__turn").textContent = `${game.turn}'s turn`;
+        this.root.querySelector(".header__turn").textContent = `Turno do ${game.turn}`;
     }
     
     updateStatus(game) {
-        let status = "In Progress";
+        let status = "Jogo Iniciado!";
         if (game.findWinningCombination()) {
-            status = `${game.turn} is the Winner!`
+            status = `${game.turn} é o Vencedor!`
         } else if (!game.isInProgress()) {
-            status = "It's a tie!"
+            status = "Empate?!"
         }
         this.root.querySelector(".header__status").textContent = status;
     }
@@ -69,7 +69,7 @@ export default class GameView {
         for (let i = 0; i < game.board.length; i++) {
             const tile = this.root.querySelector(`.board__tile[data-index="${i}"]`);
             
-            // para novos jogos não interferirem no atual
+            // para novos jogos não interferirem no resultado
             tile.classList.remove("board__tile--winner");
             tile.textContent = game.board[i];
 
