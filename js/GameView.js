@@ -26,8 +26,23 @@ export default class GameView {
             </div>
         `;
 
-        /* funcoes */
+        // Functions
         this.onTileClick = undefined;
         this.onRestartClick = undefined;
+
+        // When tile clicked, run the function and pass through each data-index
+        this.root.querySelectorAll(".board__tile").forEach(tile => {
+            tile.addEventListener("click", () => {
+                this.onTileClick(tile.dataset.index);
+            });
+        });
+        
+        // When restart button pressed
+        this.root.querySelector(".header__restart").addEventListener("click", () => {
+            if (this.onRestartClick) {
+                this.onRestartClick();
+            }
+        });
+
     }
 }

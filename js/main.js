@@ -5,12 +5,13 @@ let game = new Game();
 let gameView = new GameView(document.getElementById("app"));
 
 // define functions
-gameView.onTileClick = function() {
-
+gameView.onTileClick = function(i) {
+    /* Checking if the function works */
+    console.log(`Tile clicked: ${i}`)
 }
 
 gameView.onRestartClick = function() {
-    
+    console.log("Game is restarted");
 }
 
 /*------------------------------------------------------------------------------------------*/
