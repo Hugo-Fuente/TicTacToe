@@ -17,13 +17,22 @@ logic:
 */
 
     makeMove(i) {
+        /* can't have a movement without the game in progress */
+        if (!this.isInProgress()) {
+            return;
+        }
+        
         /* Preventing the user from choosing the same square twice */
         if (this.board[i]) {
             return;
         }
 
         this.board[i] = this.turn;
-        this.nextTurn();
+
+        if (!this.findWinningCombination()) {
+            this.nextTurn();
+        }
+        
     }
 
     findWinningCombination () {
@@ -49,6 +58,10 @@ logic:
         }
 
         return null;
+    }
+
+    isInProgress() {
+        return !this.findWinningCombination() && this.board.includes(null);
     }
 
 }
