@@ -6,13 +6,19 @@ let gameView = new GameView(document.getElementById("app"));
 
 // define functions
 gameView.onTileClick = function(i) {
-    /* Checking if the function works */
-    console.log(`Tile clicked: ${i}`)
+    /* Checking if the function works 
+    console.log(`Tile clicked: ${i}`) */
+    game.makeMove(i);
+    gameView.update(game);
 }
 
 gameView.onRestartClick = function() {
+    game = new Game();
+    gameView.update(game);
     console.log("Game is restarted");
 }
+
+//wow wtf i'm actually surprised this worked this well, damn
 
 // Start with X's turn, this.turn = "X"
 gameView.update(game);
