@@ -1,6 +1,8 @@
 import Game from "./Game.js";
+import GameView from "./GameView.js";
 
 let game = new Game();
+let gameView = new GameView(document.getElementById("app"));
 
 /*
 // Testing the turns
@@ -25,6 +27,7 @@ console.log(game.board);
 console.log(game.findWinningCombination());
 */
 
+/*
 //Looser
 game.makeMove(0); // X
 game.makeMove(3); // O
@@ -34,3 +37,4 @@ game.makeMove(2); // X
 game.makeMove(8); // O
 console.log(game.board);
 console.log(game.findWinningCombination());
+*/
