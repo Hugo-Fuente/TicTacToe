@@ -3,26 +3,22 @@ export default class GameView {
         this.root = root;
         this.root.innerHTML = `
             <div class="header">
-                <div class="header__turn">
-                    X's turn
-                </div>
-                <div class="header__status">
-                    In Progress
-                </div>
+                <div class="header__turn"></div>
+                <div class="header__status"></div>
                 <button type="button" class="header__restart">
                     <i class="material-icons">refresh</i>
                 </button>
             </div>
             <div class="board">
-                <div class="board__tile" data-index="0">O</div>
-                <div class="board__tile" data-index="1">O</div>
-                <div class="board__tile board__tile--winner" data-index="2">O</div>
-                <div class="board__tile" data-index="3">O</div>
-                <div class="board__tile" data-index="4">O</div>
-                <div class="board__tile" data-index="5">O</div>
-                <div class="board__tile" data-index="6">O</div>
-                <div class="board__tile" data-index="7">O</div>
-                <div class="board__tile" data-index="8">O</div>
+                <div class="board__tile" data-index="0"></div>
+                <div class="board__tile" data-index="1"></div>
+                <div class="board__tile" data-index="2"></div>
+                <div class="board__tile" data-index="3"></div>
+                <div class="board__tile" data-index="4"></div>
+                <div class="board__tile" data-index="5"></div>
+                <div class="board__tile" data-index="6"></div>
+                <div class="board__tile" data-index="7"></div>
+                <div class="board__tile" data-index="8"></div>
             </div>
         `;
 
@@ -44,5 +40,42 @@ export default class GameView {
             }
         });
 
+    }
+
+    update(game) {
+        this.updateTurn(game);
+        this.updateStatus(game);
+        this.updateBoard(game);
+    }
+
+    // Turno de quem
+    updateTurn(game) {
+        this.root.querySelector(".header__turn").textContent = `${game.turn}'s turn`;
+    }
+    
+    updateStatus(game) {
+        let status = "In Progress";
+        if (game.findWinningCombination()) {
+            status = `${game.turn} is the Winner!`
+        } else if (!game.isInProgress()) {
+            status = "It's a tie!"
+        }
+        this.root.querySelector(".header__status").textContent = status;
+    }
+
+    updateBoard(game) {
+        const winningCombination = game.findWinningCombination();
+
+        for (let i = 0; i < game.board.length; i++) {
+            const tile = this.root.querySelector(`.board__tile[data-index="${i}"]`);
+            
+            // para novos jogos não interferirem no atual
+            tile.classList.remove("board__tile--winner");
+            tile.textContent = game.board[i];
+
+            if(winningCombination && winningCombination.includes(i)) {
+                tile.classList.add("board__tile--winner");
+            }
+        }
     }
 }

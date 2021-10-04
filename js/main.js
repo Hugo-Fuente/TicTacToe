@@ -14,6 +14,9 @@ gameView.onRestartClick = function() {
     console.log("Game is restarted");
 }
 
+// Start with X's turn, this.turn = "X"
+gameView.update(game);
+
 /*------------------------------------------------------------------------------------------*/
 /*
 // Testing the turns
